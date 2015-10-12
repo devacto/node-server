@@ -1,5 +1,8 @@
 ### How to start the server
-npm start
+gulp serve
 
 ### How to run the tests
-npm test
+gulp test
+
+### Credits
+`gulp-browsersync-nodemon` recipe thanks to [sogko/gulp-recipes](https://github.com/sogko/gulp-recipes/tree/master/browser-sync-nodemon-expressjs)

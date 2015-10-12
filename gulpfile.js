@@ -6,7 +6,7 @@ var nodemon = require('gulp-nodemon');
 
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
-var BROWSER_SYNC_RELOAD_DELAY = 500;
+var BROWSER_SYNC_RELOAD_DELAY = 1000;
 
 gulp.task('nodemon', function (cb) {
   var called = false;
@@ -16,7 +16,7 @@ gulp.task('nodemon', function (cb) {
     script: 'app.js',
 
     // watch core server file(s) that require server restart on change
-    watch: ['app.js']
+    watch: ['app.js', 'routes/*.js']
   })
     .on('start', function onStart() {
       // ensure start only got called once
@@ -51,23 +51,12 @@ gulp.task('browser-sync', ['nodemon'], function () {
 });
 
 gulp.task('js',  function () {
-  return gulp.src('public/**/*.js')
+  return gulp.src('routes/*.js')
     // do stuff to JavaScript files
     //.pipe(uglify())
     //.pipe(gulp.dest('...'));
 });
 
-gulp.task('css', function () {
-  return gulp.src('public/**/*.css')
-    .pipe(browserSync.reload({ stream: true }));
-})
-
-gulp.task('bs-reload', function () {
-  browserSync.reload();
-});
-
 gulp.task('default', ['browser-sync'], function () {
-  gulp.watch('public/**/*.js',   ['js', browserSync.reload]);
-  gulp.watch('public/**/*.css',  ['css']);
-  gulp.watch('public/**/*.html', ['bs-reload']);
+  gulp.watch('routes/*.js',   ['js', browserSync.reload]);
 });
