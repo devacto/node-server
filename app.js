@@ -1,14 +1,15 @@
+'use strict';
+
 var express = require('express');
+var http = require('http');
 var path = require('path');
-// var favicon = require('serve-favicon');
 var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var weather = require('./routes/weather');
 
 var app = express();
+var server = http.createServer(app);
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -55,5 +56,7 @@ app.use(function(err, req, res, next) {
   res.send(errorJson(err));
 });
 
-
-module.exports = app;
+server.listen(3000, 'localhost');
+server.on('listening', function() {
+  console.log('Express server started on port %s at %s', server.address().port, server.address().address);
+});
