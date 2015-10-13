@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 var gulp = require('gulp');
@@ -50,13 +51,6 @@ gulp.task('browser-sync', ['nodemon'], function () {
   });
 });
 
-gulp.task('js',  function () {
-  return gulp.src('routes/*.js')
-    // do stuff to JavaScript files
-    //.pipe(uglify())
-    //.pipe(gulp.dest('...'));
-});
-
 gulp.task('default', ['browser-sync'], function () {
-  gulp.watch('routes/*.js',   ['js', browserSync.reload]);
+  gulp.watch('routes/*.js',   [browserSync.reload]);
 });
