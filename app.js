@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 var express = require('express');
@@ -25,7 +26,7 @@ app.use(function(req, res, next) {
 var errorJson = function(err) {
   var error = {"message": err.message, "error": err};
   return error;
-}
+};
 
 // development error handler
 // will print stacktrace
