@@ -7,7 +7,7 @@ var rp = require('request-promise');
 require('request-promise').debug = true;
 
 // App ID for openweathermap
-var APP_ID = '8466917d0340021cf7baba0b7c90ef9';
+var APP_ID = '8466917d0340021cf7baba0b7c90ef95';
 var CITY = 'Melbourne';
 
 var options = {

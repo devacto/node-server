@@ -6,13 +6,11 @@ var http = require('http');
 var path = require('path');
 var logger = require('morgan');
 
-var routes = require('./routes/index');
 var weather = require('./routes/weather');
 
 var app = express();
 var server = http.createServer(app);
 
-app.use('/', routes);
 app.use('/weather', weather);
 
 // catch 404 and forward to error handler
