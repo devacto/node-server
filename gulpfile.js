@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
+var mocha = require('gulp-mocha');
 
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
@@ -51,6 +52,10 @@ gulp.task('browser-sync', ['nodemon'], function () {
   });
 });
 
-gulp.task('default', ['browser-sync'], function () {
+gulp.task('serve', ['browser-sync'], function () {
   gulp.watch('routes/*.js',   [browserSync.reload]);
 });
+
+gulp.task('test', function() {
+  return gulp.src('test/*.js', {read: false}).pipe(mocha({reporter: 'nyan'}));
+})
