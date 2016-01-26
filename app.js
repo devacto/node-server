@@ -17,6 +17,8 @@ app.engine('hbs', engines.handlebars);
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
+app.set('port', (process.env.PORT || 3000));
+
 app.get('/', function (req, res) {
   res.render('index', {name: "Victor Wibisono"});
 });
@@ -50,7 +52,6 @@ app.use(function (err, req, res, next) {
   res.send(errorJson(err));
 });
 
-server.listen(3000, 'localhost');
-server.on('listening', function () {
-  console.log('Express server started on port %s at %s', server.address().port, server.address().address);
+server.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
